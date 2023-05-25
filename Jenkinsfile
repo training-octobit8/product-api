@@ -13,16 +13,13 @@ pipeline {
             }
         }
 
-        stage('Terraform init') {
-            steps {
-                sh 'cd terraform'
-                sh 'terraform init'
-            }
-        }
+        
         stage('Terraform apply') {
             steps {
-                sh 'cd terraform'
-                sh 'terraform apply --auto-approve'
+                sh '''cd terraform
+                terraform init
+                terraform apply --auto-approve
+                '''
             }
         }
         stage('Deploy') {
